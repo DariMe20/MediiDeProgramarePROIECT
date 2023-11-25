@@ -1,0 +1,44 @@
+Medii de programare - PROIECT - Aplicatii rezervari restaurante
+
+TABELE
+
+Restaurante	 Bucatar	Specific/Categorie	Meniu		Program 	Membrii/Clienti		Rezervari
+
+RESTAURANTE
+Nume
+Bucatar
+Locatie
+Program ? 
+Specific
+Meniu
+Nr_maxim_persoane
+
+BUCATAR
+Nume 
+Prenume
+
+SPECIFIC
+Nume categorie 
+
+MENIU
+Nume produs
+pret
+alergeni ?
+
+PROGRAM ?
+
+CLIENTI - Clienti/Admin
+Nume 
+Prenume
+Email
+Telefon
+
+REZERVARI
+Client
+Restaurant
+Data
+Ora
+Numar persoane 
+
+
+
