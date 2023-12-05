@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 
-namespace MediiDeProgramarePROIECT.Pages.Restaurants
+namespace MediiDeProgramarePROIECT.Pages.Tables
 {
     public class EditModel : PageModel
     {
@@ -21,21 +21,23 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
         }
 
         [BindProperty]
-        public Restaurant Restaurant { get; set; } = default!;
+        public Table Table { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Restaurant == null)
+            if (id == null || _context.Table == null)
             {
                 return NotFound();
             }
 
-            var restaurant =  await _context.Restaurant.FirstOrDefaultAsync(m => m.ID == id);
-            if (restaurant == null)
+            var table =  await _context.Table.FirstOrDefaultAsync(m => m.ID == id);
+            if (table == null)
             {
                 return NotFound();
             }
-            Restaurant = restaurant;
+            Table = table;
+           ViewData["WaiterID"] = new SelectList(_context.Set<Waiter>(), "ID", "Name");
+           ViewData["ZoneID"] = new SelectList(_context.Set<Zone>(), "ID", "Name");
             return Page();
         }
 
@@ -48,7 +50,7 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
                 return Page();
             }
 
-            _context.Attach(Restaurant).State = EntityState.Modified;
+            _context.Attach(Table).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +58,7 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RestaurantExists(Restaurant.ID))
+                if (!TableExists(Table.ID))
                 {
                     return NotFound();
                 }
@@ -69,9 +71,9 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
             return RedirectToPage("./Index");
         }
 
-        private bool RestaurantExists(int id)
+        private bool TableExists(int id)
         {
-          return (_context.Restaurant?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.Table?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

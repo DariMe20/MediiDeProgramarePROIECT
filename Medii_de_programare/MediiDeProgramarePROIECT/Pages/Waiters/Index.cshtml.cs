@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 
-namespace MediiDeProgramarePROIECT.Pages.Restaurants
+namespace MediiDeProgramarePROIECT.Pages.Waiters
 {
     public class IndexModel : PageModel
     {
@@ -19,13 +19,13 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
             _context = context;
         }
 
-        public IList<Restaurant> Restaurant { get;set; } = default!;
+        public IList<Waiter> Waiter { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Restaurant != null)
+            if (_context.Waiter != null)
             {
-                Restaurant = await _context.Restaurant.ToListAsync();
+                Waiter = await _context.Waiter.ToListAsync();
             }
         }
     }

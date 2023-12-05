@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 
-namespace MediiDeProgramarePROIECT.Pages.Restaurants
+namespace MediiDeProgramarePROIECT.Pages.Waiters
 {
     public class CreateModel : PageModel
     {
@@ -25,18 +25,18 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
         }
 
         [BindProperty]
-        public Restaurant Restaurant { get; set; } = default!;
+        public Waiter Waiter { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Restaurant == null || Restaurant == null)
+          if (!ModelState.IsValid || _context.Waiter == null || Waiter == null)
             {
                 return Page();
             }
 
-            _context.Restaurant.Add(Restaurant);
+            _context.Waiter.Add(Waiter);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

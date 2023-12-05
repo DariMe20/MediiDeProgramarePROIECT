@@ -1,0 +1,37 @@
+﻿@page
+@model MediiDeProgramarePROIECT.Pages.Tables.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Table</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Table.Seats)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Table.Seats)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Table.Waiter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Table.Waiter.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Table.Zone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Table.Zone.ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Table?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
