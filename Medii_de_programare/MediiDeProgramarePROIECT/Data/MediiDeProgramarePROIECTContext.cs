@@ -16,5 +16,8 @@ namespace MediiDeProgramarePROIECT.Data
         public DbSet<MediiDeProgramarePROIECT.Models.Table>? Table { get; set; }
         public DbSet<MediiDeProgramarePROIECT.Models.Waiter>? Waiter { get; set; }
         public DbSet<MediiDeProgramarePROIECT.Models.Zone>? Zone { get; set; }
+        public DbSet<MediiDeProgramarePROIECT.Models.Schedule>? Schedule { get; set; }
+        public DbSet<MediiDeProgramarePROIECT.Models.BookingSchedule>? BookingSchedule { get; set; }
+
     }
 }

@@ -6,7 +6,7 @@ namespace MediiDeProgramarePROIECT.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Zone Name")]
+        [Display(Name = "Zona")]
         public string Name { get; set; }
 
         // Relație cu mesele

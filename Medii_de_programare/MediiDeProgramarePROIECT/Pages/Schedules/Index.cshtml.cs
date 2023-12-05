@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 
-namespace MediiDeProgramarePROIECT.Pages.Tables
+namespace MediiDeProgramarePROIECT.Pages.Schedules
 {
     public class IndexModel : PageModel
     {
@@ -19,22 +19,14 @@ namespace MediiDeProgramarePROIECT.Pages.Tables
             _context = context;
         }
 
-        public IList<Table> Table { get; set; }
-        public TableData TableD { get; set; }
+        public IList<Schedule> Schedule { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            TableD = new TableData
+            if (_context.Schedule != null)
             {
-                Tables = await _context.Table
-                    .Include(t => t.Waiter)
-                    .Include(t => t.Zone)
-                    .Include(t => t.BookingSchedules)
-                        .ThenInclude(bs => bs.Schedule)
-                    .AsNoTracking()
-                    .ToListAsync()
-            };
+                Schedule = await _context.Schedule.ToListAsync();
+            }
         }
     }
-
 }

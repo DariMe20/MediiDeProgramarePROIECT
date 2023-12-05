@@ -5,14 +5,10 @@ namespace MediiDeProgramarePROIECT.Models
     public class BookingSchedule
     {
         public int ID { get; set; }
+        public int TableID { get; set; }
+        public Table Table { get; set; }
 
-        [Display(Name = "Day of Week")]
-        public DayOfWeek DayOfWeek { get; set; }
-
-        [Display(Name = "Start Time")]
-        public TimeSpan StartTime { get; set; }
-
-        [Display(Name = "End Time")]
-        public TimeSpan EndTime { get; set; }
+        public int ScheduleID { get; set; }
+        public Schedule Schedule { get; set; }
     }
 }

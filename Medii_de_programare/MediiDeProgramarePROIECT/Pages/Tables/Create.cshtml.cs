@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MediiDeProgramarePROIECT.Pages.Tables
 {
-    public class CreateModel : PageModel
+    public class CreateModel : TableSchedulesPageModel
     {
         private readonly MediiDeProgramarePROIECT.Data.MediiDeProgramarePROIECTContext _context;
 
@@ -21,26 +23,36 @@ namespace MediiDeProgramarePROIECT.Pages.Tables
 
         public IActionResult OnGet()
         {
-        ViewData["WaiterID"] = new SelectList(_context.Set<Waiter>(), "ID", "Name");
-        ViewData["ZoneID"] = new SelectList(_context.Set<Zone>(), "ID", "Name");
+            ViewData["WaiterID"] = new SelectList(_context.Waiter, "ID", "Name");
+            ViewData["ZoneID"] = new SelectList(_context.Zone, "ID", "Name");
+
+            var table = new Table();
+            table.BookingSchedules = new List<BookingSchedule>();
+            PopulateAssignedScheduleData(_context, table);
             return Page();
         }
 
         [BindProperty]
-        public Table Table { get; set; } = default!;
-        
+        public Table Table { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedSchedules)
         {
-          if (!ModelState.IsValid || _context.Table == null || Table == null)
+            var newTable = new Table();
+            if (selectedSchedules != null)
             {
-                return Page();
+                newTable.BookingSchedules = new List<BookingSchedule>();
+                foreach (var sched in selectedSchedules)
+                {
+                    var schedToAdd = new BookingSchedule
+                    {
+                        ScheduleID = int.Parse(sched)
+                    };
+                    newTable.BookingSchedules.Add(schedToAdd);
+                }
             }
-
+            Table.BookingSchedules = newTable.BookingSchedules;
             _context.Table.Add(Table);
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Index");
         }
     }
