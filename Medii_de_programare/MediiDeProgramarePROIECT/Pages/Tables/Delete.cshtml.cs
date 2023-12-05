@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 
-namespace MediiDeProgramarePROIECT.Pages.Restaurants
+namespace MediiDeProgramarePROIECT.Pages.Tables
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
         }
 
         [BindProperty]
-      public Restaurant Restaurant { get; set; } = default!;
+      public Table Table { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Restaurant == null)
+            if (id == null || _context.Table == null)
             {
                 return NotFound();
             }
 
-            var restaurant = await _context.Restaurant.FirstOrDefaultAsync(m => m.ID == id);
+            var table = await _context.Table.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (restaurant == null)
+            if (table == null)
             {
                 return NotFound();
             }
             else 
             {
-                Restaurant = restaurant;
+                Table = table;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Restaurant == null)
+            if (id == null || _context.Table == null)
             {
                 return NotFound();
             }
-            var restaurant = await _context.Restaurant.FindAsync(id);
+            var table = await _context.Table.FindAsync(id);
 
-            if (restaurant != null)
+            if (table != null)
             {
-                Restaurant = restaurant;
-                _context.Restaurant.Remove(Restaurant);
+                Table = table;
+                _context.Table.Remove(Table);
                 await _context.SaveChangesAsync();
             }
 

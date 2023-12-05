@@ -13,7 +13,8 @@ namespace MediiDeProgramarePROIECT.Data
             : base(options)
         {
         }
-
-        public DbSet<MediiDeProgramarePROIECT.Models.Restaurant> Restaurant { get; set; } = default!;
+        public DbSet<MediiDeProgramarePROIECT.Models.Table>? Table { get; set; }
+        public DbSet<MediiDeProgramarePROIECT.Models.Waiter>? Waiter { get; set; }
+        public DbSet<MediiDeProgramarePROIECT.Models.Zone>? Zone { get; set; }
     }
 }

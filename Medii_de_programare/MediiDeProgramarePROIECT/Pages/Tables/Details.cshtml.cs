@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 
-namespace MediiDeProgramarePROIECT.Pages.Restaurants
+namespace MediiDeProgramarePROIECT.Pages.Tables
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace MediiDeProgramarePROIECT.Pages.Restaurants
             _context = context;
         }
 
-      public Restaurant Restaurant { get; set; } = default!; 
+      public Table Table { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Restaurant == null)
+            if (id == null || _context.Table == null)
             {
                 return NotFound();
             }
 
-            var restaurant = await _context.Restaurant.FirstOrDefaultAsync(m => m.ID == id);
-            if (restaurant == null)
+            var table = await _context.Table.FirstOrDefaultAsync(m => m.ID == id);
+            if (table == null)
             {
                 return NotFound();
             }
             else 
             {
-                Restaurant = restaurant;
+                Table = table;
             }
             return Page();
         }
