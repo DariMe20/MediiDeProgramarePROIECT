@@ -20,21 +20,39 @@ namespace MediiDeProgramarePROIECT.Pages.Tables
         }
 
         public IList<Table> Table { get; set; }
-        public TableData TableD { get; set; }
 
-        public async Task OnGetAsync()
+        public TableData TableD { get; set; }
+        public int TableID { get; set; }
+        public int ScheduleID { get; set; }
+
+
+
+        public string ZoneSort { get; set; }
+
+        public string CurrentFilter { get; set; }
+
+
+        public async Task OnGetAsync(int? id, int? scheduleID, string sortOrder, string searchString)
         {
-            TableD = new TableData
+            TableD = new TableData();
+            ZoneSort = String.IsNullOrEmpty(sortOrder) ? "zone_cres " : "";
             {
-                Tables = await _context.Table
+                TableD.Tables = await _context.Table
                     .Include(t => t.Waiter)
                     .Include(t => t.Zone)
                     .Include(t => t.BookingSchedules)
                         .ThenInclude(bs => bs.Schedule)
                     .AsNoTracking()
-                    .ToListAsync()
-            };
-        }
-    }
+                    .ToListAsync();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    TableD.Tables = TableD.Tables.Where(s => s.Zone.Name.Contains(searchString)
 
+                   || s.Zone.Name.Contains(searchString));
+
+                };
+            }
+        }
+
+    }
 }

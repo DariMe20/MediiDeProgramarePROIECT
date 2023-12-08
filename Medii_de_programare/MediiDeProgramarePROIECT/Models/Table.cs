@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MediiDeProgramarePROIECT.Migrations;
+using System.ComponentModel.DataAnnotations;
 
 namespace MediiDeProgramarePROIECT.Models
 {
@@ -23,6 +24,16 @@ namespace MediiDeProgramarePROIECT.Models
 
         // Programul pentru rezervări
         [Display(Name = "Disponibilitate")]
+        
+
+
+        public int? ReservationID { get; set; }
+        public Reservation? Reservation { get; set; }
+
+
+        
+
         public ICollection<BookingSchedule>? BookingSchedules { get; set; }
     }
+
 }
