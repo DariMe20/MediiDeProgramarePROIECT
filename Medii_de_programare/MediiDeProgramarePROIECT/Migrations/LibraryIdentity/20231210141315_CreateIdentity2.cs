@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace MediiDeProgramarePROIECT.Migrations
+namespace MediiDeProgramarePROIECT.Migrations.LibraryIdentity
 {
-    public partial class AddSchedule : Migration
+    public partial class CreateIdentity2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediiDeProgramarePROIECT.Migrations
 {
     [DbContext(typeof(MediiDeProgramarePROIECTContext))]
-    [Migration("20231209110119_ReservationsPulled2")]
-    partial class ReservationsPulled2
+    [Migration("20231210191025_ConstraintReservation4")]
+    partial class ConstraintReservation4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -90,8 +90,14 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.Property<DateTime>("ReservationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ReservationDuration")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ReservationID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("TableID")
                         .HasColumnType("int");

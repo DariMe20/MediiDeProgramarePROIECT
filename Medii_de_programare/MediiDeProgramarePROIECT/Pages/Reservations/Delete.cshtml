@@ -16,19 +16,31 @@
             @Html.DisplayNameFor(model => model.Reservation.Client)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Reservation.Client.ID)
+            @Html.DisplayFor(model => model.Reservation.ClientID)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Reservation.Table)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Reservation.Table.ID)
+            @Html.DisplayFor(model => model.Reservation.TableID)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Reservation.ReturnDate)
+            @Html.DisplayNameFor(model => model.Reservation.ReservationDate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Reservation.ReturnDate)
+            @Html.DisplayFor(model => model.Reservation.ReservationDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.ReservationTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.ReservationTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.ReservationDuration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.ReservationDuration)
         </dd>
     </dl>
     

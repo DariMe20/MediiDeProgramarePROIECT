@@ -88,8 +88,14 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.Property<DateTime>("ReservationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ReservationDuration")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ReservationID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("TableID")
                         .HasColumnType("int");

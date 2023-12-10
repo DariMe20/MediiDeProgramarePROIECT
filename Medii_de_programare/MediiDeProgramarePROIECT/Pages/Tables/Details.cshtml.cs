@@ -19,7 +19,7 @@ namespace MediiDeProgramarePROIECT.Pages.Tables
             _context = context;
         }
 
-      public Table Table { get; set; } = default!; 
+      public Table Table { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,15 +28,17 @@ namespace MediiDeProgramarePROIECT.Pages.Tables
                 return NotFound();
             }
 
-            var table = await _context.Table.FirstOrDefaultAsync(m => m.ID == id);
+            var table = await _context.Table
+                .Include(t => t.Waiter)
+                .Include(t => t.Zone)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
             if (table == null)
             {
                 return NotFound();
             }
-            else 
-            {
-                Table = table;
-            }
+
+            Table = table;
             return Page();
         }
     }

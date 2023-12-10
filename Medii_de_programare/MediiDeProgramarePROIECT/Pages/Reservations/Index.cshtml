@@ -14,37 +14,44 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].Client)
+                @Html.DisplayNameFor(model => model.Reservation[0].Client.ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].Table)
+                @Html.DisplayNameFor(model => model.Reservation[0].TableID)
             </th>
             <th>
-                @Html.DisplayNameFor(model =>model.Reservation[0].Table.Waiter)
+                @Html.DisplayNameFor(model => model.Reservation[0].ReservationDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].ReturnDate)
+                @Html.DisplayNameFor(model => model.Reservation[0].ReservationTime)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservation[0].ReservationDuration)
+            </th>
+            <th>Acțiuni</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Reservation) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Table.Reservation.Table.Seats)
-            </td>
+            <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Table.Reservation.Table.Waiter.Name)
+                    @Html.DisplayFor(modelItem => item.Client.ID)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TableID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationDuration)
+                </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+          
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>

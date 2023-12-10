@@ -4,7 +4,7 @@
 
 namespace MediiDeProgramarePROIECT.Migrations
 {
-    public partial class ReservationsPulled2 : Migration
+    public partial class ConstraintReservation3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
