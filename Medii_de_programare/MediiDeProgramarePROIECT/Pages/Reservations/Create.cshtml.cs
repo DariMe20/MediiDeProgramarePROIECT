@@ -27,7 +27,7 @@ namespace MediiDeProgramarePROIECT.Pages.Reservations
               .Select(x => new
              {
               x.ID,
-              Table = x.Seats + " - " + x.Waiter.Name
+              Table = "Seats - " + x.Seats + "   Waiter - " + x.Waiter.Name
             });
             ViewData["TableID"] = new SelectList(tableList, "ID", "Table");
             ViewData["ClientID"] = new SelectList(_context.Client, "ID", "FullName");

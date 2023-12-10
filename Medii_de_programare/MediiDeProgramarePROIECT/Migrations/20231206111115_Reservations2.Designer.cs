@@ -90,7 +90,7 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.Property<int?>("ReservationID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReturnDate")
+                    b.Property<DateTime>("ReservationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("TableID")

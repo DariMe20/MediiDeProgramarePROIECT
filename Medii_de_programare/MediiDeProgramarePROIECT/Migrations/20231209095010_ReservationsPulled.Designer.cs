@@ -4,6 +4,7 @@ using MediiDeProgramarePROIECT.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediiDeProgramarePROIECT.Migrations
 {
     [DbContext(typeof(MediiDeProgramarePROIECTContext))]
-    partial class MediiDeProgramarePROIECTContextModelSnapshot : ModelSnapshot
+    [Migration("20231209095010_ReservationsPulled")]
+    partial class ReservationsPulled
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,11 +87,11 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.Property<int?>("ClientID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int?>("ReservationID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("TableID")
                         .HasColumnType("int");
