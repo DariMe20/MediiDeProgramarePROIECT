@@ -45,6 +45,72 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.ToTable("BookingSchedule");
                 });
 
+            modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Client", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Client");
+                });
+
+            modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Reservation", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int?>("ClientID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ReservationDuration")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReservationID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TableID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ClientID");
+
+                    b.HasIndex("ReservationID")
+                        .IsUnique()
+                        .HasFilter("[ReservationID] IS NOT NULL");
+
+                    b.ToTable("Reservation");
+                });
+
             modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Schedule", b =>
                 {
                     b.Property<int>("ID")
@@ -78,6 +144,9 @@ namespace MediiDeProgramarePROIECT.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int?>("ReservationID")
+                        .HasColumnType("int");
 
                     b.Property<int>("Seats")
                         .HasColumnType("int");
@@ -150,6 +219,21 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.Navigation("Table");
                 });
 
+            modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Reservation", b =>
+                {
+                    b.HasOne("MediiDeProgramarePROIECT.Models.Client", "Client")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ClientID");
+
+                    b.HasOne("MediiDeProgramarePROIECT.Models.Table", "Table")
+                        .WithOne("Reservation")
+                        .HasForeignKey("MediiDeProgramarePROIECT.Models.Reservation", "ReservationID");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Table");
+                });
+
             modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Table", b =>
                 {
                     b.HasOne("MediiDeProgramarePROIECT.Models.Waiter", "Waiter")
@@ -165,6 +249,11 @@ namespace MediiDeProgramarePROIECT.Migrations
                     b.Navigation("Zone");
                 });
 
+            modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Client", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
             modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Schedule", b =>
                 {
                     b.Navigation("BookingSchedules");
@@ -173,6 +262,8 @@ namespace MediiDeProgramarePROIECT.Migrations
             modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Table", b =>
                 {
                     b.Navigation("BookingSchedules");
+
+                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("MediiDeProgramarePROIECT.Models.Waiter", b =>

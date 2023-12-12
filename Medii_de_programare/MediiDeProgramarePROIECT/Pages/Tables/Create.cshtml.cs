@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediiDeProgramarePROIECT.Pages.Tables
 {
+    [Authorize(Roles = "Admin")]
+
     public class CreateModel : TableSchedulesPageModel
     {
         private readonly MediiDeProgramarePROIECT.Data.MediiDeProgramarePROIECTContext _context;

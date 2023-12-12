@@ -4,7 +4,7 @@
 
 namespace MediiDeProgramarePROIECT.Migrations
 {
-    public partial class SchedulesTables : Migration
+    public partial class Database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -18,6 +18,16 @@ namespace MediiDeProgramarePROIECT.Data
         public DbSet<MediiDeProgramarePROIECT.Models.Zone>? Zone { get; set; }
         public DbSet<MediiDeProgramarePROIECT.Models.Schedule>? Schedule { get; set; }
         public DbSet<MediiDeProgramarePROIECT.Models.BookingSchedule>? BookingSchedule { get; set; }
+        public DbSet<MediiDeProgramarePROIECT.Models.Client>? Client { get; set; }
+        public DbSet<MediiDeProgramarePROIECT.Models.Reservation>? Reservation { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Table>()
+                .HasOne(e => e.Reservation)
+            .WithOne(e => e.Table)
+                .HasForeignKey<Reservation>("ReservationID");
+        }
     }
 }

@@ -4,7 +4,7 @@
 
 namespace MediiDeProgramarePROIECT.Migrations
 {
-    public partial class AddSchedule : Migration
+    public partial class ConstraintReservation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
