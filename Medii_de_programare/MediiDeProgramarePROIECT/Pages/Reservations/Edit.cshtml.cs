@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace MediiDeProgramarePROIECT.Pages.Reservations
 {
@@ -31,7 +32,7 @@ namespace MediiDeProgramarePROIECT.Pages.Reservations
             {
                 return NotFound();
             }
-
+          
             var reservation =  await _context.Reservation.FirstOrDefaultAsync(m => m.ID == id);
             if (reservation == null)
             {
