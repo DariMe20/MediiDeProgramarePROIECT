@@ -8,7 +8,7 @@ namespace MediiDeProgramarePROIECT.Models
         public int ID { get; set; }
 
         [Display(Name = "Locuri disponibile")]
-        [Range(1, 15, ErrorMessage = "The number of seats must be between 1 and 15")]
+        [Range(1, 15, ErrorMessage = "Numarul de locuri trebuie sa fie intre 1 si 15")]
 
         public int Seats { get; set; }
 
@@ -18,20 +18,15 @@ namespace MediiDeProgramarePROIECT.Models
         public Waiter? Waiter { get; set; }
 
         // Cheie străină pentru Zone
-        [Display(Name = "Chelner")]
+        [Display(Name = "Zona")]
         public int? ZoneID { get; set; }
         public Zone? Zone { get; set; }
 
         // Programul pentru rezervări
         [Display(Name = "Disponibilitate")]
         
-
-
         public int? ReservationID { get; set; }
         public Reservation? Reservation { get; set; }
-
-
-        
 
         public ICollection<BookingSchedule>? BookingSchedules { get; set; }
     }
