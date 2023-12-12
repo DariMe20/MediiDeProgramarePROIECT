@@ -8,19 +8,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace MediiDeProgramarePROIECT.Pages.Reservations
 {
     public class CreateModel : PageModel
     {
         private readonly MediiDeProgramarePROIECT.Data.MediiDeProgramarePROIECTContext _context;
-
-        public CreateModel(MediiDeProgramarePROIECT.Data.MediiDeProgramarePROIECTContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public CreateModel(MediiDeProgramarePROIECTContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult OnGet(int? tableId)
+        public async Task<IActionResult> OnGetAsync(int? tableId)
         {
             var tableList = _context.Table
                 .Include(t => t.Waiter)
@@ -33,9 +35,14 @@ namespace MediiDeProgramarePROIECT.Pages.Reservations
                     Details = $"Masa {x.ID}, Locuri: {x.Seats}, Zona: {x.Zone.Name}, Zile disponibile: " +
                               string.Join(", ", x.BookingSchedules.Select(bs => $"{bs.Schedule.ScheduleName}"))
                 }).ToList();
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound("Utilizatorul nu este logat.");
+            }
 
             ViewData["TableID"] = new SelectList(tableList, "ID", "Details", "ID");
-            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+            ViewData["ClientID"] = user.Email;
 
             // Restabilește TableID în modelul Reservation dacă este specificat
             if (tableId.HasValue)
@@ -71,8 +78,13 @@ namespace MediiDeProgramarePROIECT.Pages.Reservations
             {
                 return Page(); // Returnează pagina cu datele existente
             }
-
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound("Utilizatorul nu este logat.");
+            }
             var table = await _context.Table
+            
         .Include(t => t.BookingSchedules)
         .FirstOrDefaultAsync(t => t.ID == Reservation.TableID);
 

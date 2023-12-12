@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].Client.ID)
+               Email Client
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Reservation[0].TableID)
@@ -35,7 +35,7 @@
 @foreach (var item in Model.Reservation) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Client.ID)
+                    @Html.DisplayFor(modelItem => item.Client.Email)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TableID)
