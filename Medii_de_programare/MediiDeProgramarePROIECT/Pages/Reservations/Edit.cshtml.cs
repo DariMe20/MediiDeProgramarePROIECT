@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediiDeProgramarePROIECT.Pages.Reservations
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly MediiDeProgramarePROIECTContext _context;

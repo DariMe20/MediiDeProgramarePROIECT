@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MediiDeProgramarePROIECT.Data;
 using MediiDeProgramarePROIECT.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediiDeProgramarePROIECT.Pages.Schedules
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly MediiDeProgramarePROIECT.Data.MediiDeProgramarePROIECTContext _context;
