@@ -42,7 +42,7 @@ namespace MediiDeProgramarePROIECT.Pages.Reservations
             }
 
             ViewData["TableID"] = new SelectList(tableList, "ID", "Details", "ID");
-            ViewData["ClientID"] = user.Email;
+            ViewData["ClientID"] = new SelectList(tableList, "ID", "ID");
 
             // Restabilește TableID în modelul Reservation dacă este specificat
             if (tableId.HasValue)
@@ -60,7 +60,7 @@ namespace MediiDeProgramarePROIECT.Pages.Reservations
                 ViewData["TableID"] = new SelectList(tableList, "ID", "Details");
             }
 
-            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "Email");
 
             return Page();
         }

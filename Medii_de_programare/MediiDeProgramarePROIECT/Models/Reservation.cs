@@ -7,8 +7,9 @@ namespace MediiDeProgramarePROIECT.Models
     {
         public int ID { get; set; }
         [Display(Name = "Nr CLient")]
-        public int? ClientID { get; set; }
         public Client? Client { get; set; }
+        public int? ClientID { get; set; }
+       
          [Display(Name = "Table")]
         public int? TableID { get; set; }
        
